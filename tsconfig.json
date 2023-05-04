@@ -14,9 +14,16 @@
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
+		"allowUnreachableCode": false,
+		"noImplicitReturns": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+		"typeRoots": [ "./types" ],
+		"allowJs": true
   },
+	"include": [
+		"./src/**/*.*"
+	],
   "exclude": ["node_modules", "dist", "**/*.spec.ts"]
 }
