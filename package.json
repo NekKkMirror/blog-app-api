@@ -8,7 +8,7 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "build": "tsc",
-    "start": "cross-env NODE_ENV=production npm run build && node dist/index.js",
+    "start": "npm run build && node dist/index.js",
     "watchFile": "nodemon --exec ts-node src/container/up.container.ts"
   },
   "author": "Nikita Rybak",
