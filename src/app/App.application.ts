@@ -2,8 +2,7 @@ import { Application } from 'express';
 import {
 	builtIn,
 	middleware,
-	server,
-	swagger
+	server
 } from '../dependencies/index.dependencies';
 import { Server } from 'https';
 import { initMorganToken } from '../utils/index.util';
@@ -27,7 +26,7 @@ const morgan = middleware.morgan;
 const rateLimiter = middleware.rateLimiter;
 const fileUpload = middleware.fileUpload;
 
-const connect = swagger.connector(swagger.api, swagger.apiDefinition);
+// const connect = swagger.connector(swagger.api, swagger.apiDefinition);
 
 export type PORT = number | string;
 
@@ -123,7 +122,7 @@ export class App {
 	}
 
 	private setHttps(): Server {
-		connect(this.app);
+// 		connect(this.app); 
 
 		return https.createServer(
 			{
