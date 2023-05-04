@@ -40,16 +40,16 @@ export class App {
 		this.initialize(this.port);
 	}
 
-	private initialize(port: PORT): Server {
+	private initialize(port: PORT) {
 		this.setMiddleware();
 		this.setRoutes();
 		this.setErrorMiddleware();
 		this.db();
 
-		return this.setHttps().listen(port, (): void =>
+		return this.setHttp().listen(port, (): void =>
 			console.log(
 				`Server listen at ${clc.underline.bold.cyan(
-					`https://localhost:${port}`
+					`http://localhost:${port}`
 				)}\n`
 			)
 		);
@@ -122,21 +122,10 @@ export class App {
 		this.app.use(errorHandlerFunction);
 	}
 
-	private setHttps(): Server {
+	private setHttp() {
 		connect(this.app);
 
-		return https.createServer(
-			{
-				cert: fs.readFileSync(
-					path.join(path.resolve(path.join(__dirname, '../config/cert.pem')))
-				),
-				key: fs.readFileSync(
-					path.join(path.resolve(path.join(__dirname, '../config/key.pem')))
-				),
-				passphrase: process.env.HTTPS_PASSPHRASE
-			},
-			this.app
-		);
+		return this.app;
 	}
 
 	private async db() {

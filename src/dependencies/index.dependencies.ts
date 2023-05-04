@@ -33,10 +33,10 @@ import * as path from 'path';
 import { connector } from 'swagger-routes-express';
 import YAML = require('yamljs');
 
-const api = require('../swagger/api');
+const api = require('../../swagger/api');
 
 const apiDefinition = YAML.load(
-	path.resolve(path.join(__dirname, '../swagger/api.swagger.yaml'))
+	path.resolve(path.join(__dirname, '../../swagger/api.swagger.yaml'))
 );
 
 const swagger = {

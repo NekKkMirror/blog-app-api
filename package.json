@@ -9,12 +9,7 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "start": "cross-env NODE_ENV=production npm run build && node dist/index.js",
-    "watchFile": "nodemon --exec ts-node src/container/up.container.ts",
-		"firebase:serve": "npm run build && firebase emulators:start --only functions",
-		"firebase:shell": "npm run build && firebase functions:shell",
-		"firebase:start": "npm run shell",
-		"firebase:deploy": "firebase deploy --only functions",
-		"firebase:logs": "firebase functions:log"
+    "watchFile": "nodemon --exec ts-node src/container/up.container.ts"
   },
   "author": "Nikita Rybak",
   "license": "ISC",

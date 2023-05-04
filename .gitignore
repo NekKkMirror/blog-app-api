@@ -1,9 +1,8 @@
 # compiled output
-/.firebase
-/.github
 /dist
 /node_modules
-/src/config
+/config
+
 # Logs
 logs
 *.log
