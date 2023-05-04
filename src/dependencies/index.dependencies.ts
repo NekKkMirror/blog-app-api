@@ -19,7 +19,7 @@ import * as cookieParser from 'cookie-parser';
 import * as morgan from 'morgan';
 import * as fileUpload from 'express-fileupload';
 import * as rateLimiter from 'express-rate-limit';
-import * as helmet from 'helmet';
+import * as helm from 'helmet';
 import * as xss from 'xss-clean';
 import * as cors from 'cors';
 import * as mongoSanitize from 'express-mongo-sanitize';
@@ -45,13 +45,14 @@ const swagger = {
 	apiDefinition
 };
 
+// @ts-ignore
 const middleware = {
 	clc,
 	cookieParser,
 	morgan,
 	fileUpload,
 	rateLimiter,
-	helmet,
+	helm,
 	xss,
 	cors,
 	mongoSanitize,
