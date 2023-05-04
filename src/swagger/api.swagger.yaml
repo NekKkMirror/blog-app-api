@@ -1,0 +1,368 @@
+openapi: 3.0.0
+
+info:
+  description: express api
+  version: 1.0.0
+  title: Blog
+
+security:
+  - bearerAuth: []
+
+paths:
+
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: Return auth register controller response
+      description: User registration
+      operationId: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRegisterSchema'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthRegisterSchema'
+        '201':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthRegisterSchema'
+        '404':
+          description: Enter all the data correctly
+        '401':
+          description: Invalid Credentials
+        '500':
+          description: Server error
+
+  /auth/login:
+    post:
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginSchema'
+      summary: Return auth login controller response
+      description: User login
+      operationId: Login
+      responses:
+        '200':
+          description: User successfully founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLoginSchemaSuccess'
+        '201':
+          description: User successfully founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLoginSchemaSuccess'
+        '404':
+          description: Enter all the data correctly
+        '401':
+          description: Invalid Credentials
+        '500':
+          description: Server error
+
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginSchema'
+      summary: Return auth login controller response
+      description: User login
+      operationId: Login
+      responses:
+        '200':
+          description: User logged out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthLoginSchemaSuccess'
+        '500':
+          description: Server error
+
+  /blog/bulk:
+    post:
+      tags:
+        - blog
+      summary: Return created blogs controller response
+      description: Create blogs
+      operationId: Create blogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/BlogCreateSchema'
+      responses:
+        '200':
+          description: Blogs successfully created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '201':
+          description: Blogs successfully created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '404':
+          description: Blog cannot be made
+        '500':
+          description: Server error
+
+  /blog:
+    post:
+      tags:
+        - blog
+      summary: Return created blog controller response
+      description: Create blog
+      operationId: Create blog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogCreateSchema'
+      responses:
+        '200':
+          description: Blog successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '201':
+          description: Blog successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '404':
+          description: Blog cannot be made
+        '500':
+          description: Server error
+    get:
+      tags:
+        - blog
+      summary: Return blog get all blogs controller response
+      description: Get all blogs
+      operationId: Get all blogs
+      responses:
+        '200':
+          description: Blogs successfully found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '404':
+          description: No blogs yet
+        '500':
+          description: Server error
+
+  /blog/search?:
+    get:
+      tags:
+        - blog
+      summary: Return search blogs controller response
+      parameters:
+        - in: query
+          name: page
+        - in: query
+          name: limit
+        - in: query
+          name: search_term
+        - in: query
+          name: order
+
+      description: Search blogs
+      operationId: Search blogs
+      responses:
+        '200':
+          description: Blogs successfully founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '201':
+          description: Blogs successfully founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '404':
+          description: Blog cannot be made
+        '500':
+          description: Server error
+
+
+  /blog/{id}:
+    patch:
+      tags:
+        - blog
+      summary: Return are patch blog controller response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogCreateSchema'
+      parameters:
+        - in: path
+          name: id
+          required: true
+      description: Update blog
+      operationId: Update blog
+      responses:
+        '200':
+          description: Blog successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogUpdateSchema'
+        '201':
+          description: Blog successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogUpdateSchema'
+        '404':
+          description: No blog yet
+        '500':
+          description: Server error
+    delete:
+      tags:
+        - blog
+      summary: Return are get blog controller response
+      parameters:
+        - in: path
+          name: id
+          required: true
+      description: Delete blog
+      operationId: Delete blog
+      responses:
+        '200':
+          description: Blog successfully deleted
+        '404':
+          description: No blog yet
+        '500':
+          description: Server error
+    get:
+      tags:
+        - blog
+      summary: Return are get blog controller response
+      parameters:
+       - in: path
+         name: id
+         required: true
+      description: Get blog
+      operationId: Get all blog
+      responses:
+        '200':
+          description: Blogs successfully found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogGetSchemaSuccess'
+        '404':
+          description: No blog yet
+        '500':
+          description: Server error
+
+servers:
+  - url: https://localhost:3001/api/v1
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    AuthRegisterSchema:
+      type: object
+      properties:
+        name:
+          required: true
+          type: string
+        email:
+          required: true
+          type: string
+        password:
+          required: true
+          type: string
+
+    AuthLoginSchema:
+      type: object
+      properties:
+        email:
+          required: true
+          type: string
+        password:
+          required: true
+          type: string
+
+    AuthLoginSchemaSuccess:
+      type: object
+      properties:
+        username:
+          type: string
+        userId:
+          type: string
+        userRole:
+          type: string
+
+    BlogGetSchemaSuccess:
+      type: object
+      properties:
+        author:
+          type: string
+        message:
+          type: string
+        id:
+          type: string
+
+    BlogCreateSchema:
+      type: object
+      properties:
+        author:
+          required: true
+          type: string
+        message:
+          required: true
+          type: string
+
+    BlogUpdateSchema:
+      type: object
+      properties:
+        author:
+          type: string
+        message:
+          type: string
+
