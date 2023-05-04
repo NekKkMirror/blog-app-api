@@ -22,7 +22,6 @@ const path = builtIn.path;
 const clc = middleware.clc;
 const cookieParser = middleware.cookieParser;
 const cors = middleware.cors;
-const helmet = middleware.helmet;
 const mongoSanitize = middleware.mongoSanitize;
 const morgan = middleware.morgan;
 const rateLimiter = middleware.rateLimiter;
@@ -59,7 +58,6 @@ export class App {
 	private setMiddleware(): void {
 		this.app.set('trust proxy', 1);
 
-		this.app.use(helmet());
 		this.app.use(
 			cors({
 				origin: process.env.ORIGIN,

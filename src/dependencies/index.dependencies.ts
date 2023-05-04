@@ -45,14 +45,12 @@ const swagger = {
 	apiDefinition
 };
 
-// @ts-ignore
 const middleware = {
 	clc,
 	cookieParser,
 	morgan,
 	fileUpload,
 	rateLimiter,
-	helm,
 	xss,
 	cors,
 	mongoSanitize,
